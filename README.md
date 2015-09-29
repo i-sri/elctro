@@ -2,7 +2,7 @@
 
 Lancer le collecteur avec 
 
-```
+```sh
 sudo PYTHONPATH=.:/home/pi/ABElectronics_Python_Libraries/ADCDACPi/ python monitor.py
 ```
 
@@ -24,6 +24,13 @@ data-2015-04-29 00:00:01.729281.json
 Voir photo (les fils blanc vont vers la photorésistance)
 
 ![Pi avec convertisseur ADDA](pi_adc.jpg "Pi+convertisseur ADDA et connexions")
+
+```
+ 3.3V ----- 10kO ------------ [Photores] -------- GND
+                     |
+                     |
+                     IN1
+```
 
 # Algorithme
 
