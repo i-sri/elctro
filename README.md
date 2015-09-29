@@ -23,6 +23,8 @@ data-2015-04-29 00:00:01.729281.json
 
 Voir photo (les fils blanc vont vers la photorésistance)
 
+![Pi avec convertisseur ADDA](pi_adc.jpg "Pi+convertisseur ADDA et connexions")
+
 # Algorithme
 
 Lorsque la photorésistance est éclairée par la diode rouge du compteur (un flash pour 1Wh consommé) la tension chute (par exemple de 2.5V à 1V sur mon installation). Pour détecter un flash la méthode général est 
