@@ -1,4 +1,10 @@
-# Fonctionnement du collecteur de données
+# Objectif
+
+Créer un collecteur de données de consommation électrique (presque) instantannée et comptant les impulsions correspondant à 1Wh consommé. Le compteur électrique fournit ces impulsions sous forme d'un clignotement (flash) d'une LED rouge. Il suffit donc de détecter ces flash à l'aide d'une photorésistance pour obtenir la consommation Wh par Wh.
+
+Le système est entièrement autonome, il est composé d'un raspberry pi couplé à une photorésistance via un convertisseur AD. Les données collectées sont stockées localement sur la carte SD du pi. Les données peuvent être transférée sur un autre ordinateur par sftp via une connexion wifi du pi.
+
+# Utilisation du collecteur de données
 
 Lancer le collecteur avec 
 
@@ -29,7 +35,7 @@ Voir photo (les fils blanc vont vers la photorésistance)
  3.3V ----- 10kO ------------ [Photores] -------- GND
                      |
                      |
-                     IN1
+                    IN1
 ```
 
 # Algorithme
