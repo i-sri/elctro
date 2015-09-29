@@ -2,7 +2,9 @@
 
 Lancer le collecteur avec 
 
+```
 sudo PYTHONPATH=.:/home/pi/ABElectronics_Python_Libraries/ADCDACPi/ python monitor.py
+```
 
 Le collecteur crée des fichier JSON, un par jour, nommés data-_data de création_.json, par exemple
 
