@@ -100,8 +100,17 @@ while running :
         else:
             firstLine = False
         
-        of.write('{ "d": "'+str(tstamp)+'", "t": '+("%.6f" % tt)+', "dt": '+("%.6f" % (tt-tp))+', "w": '+str(3600.0/(tt-tp))+ ', "dv": ' + str(vnew - vinit)+"}")
+        watts = str(3600.0/(tt-tp))
+        of.write('{ "d": "'+str(tstamp)+'", "t": '+("%.6f" % tt)+', "dt": '+("%.6f" % (tt-tp))+', "w": '+watts+ ', "dv": ' + str(vnew - vinit)+"}")
         of.close()
+        
+        wf = open("watts.html",'w') 
+        wf.write('<html><meta http-equiv="refresh" content="1"><body><p style="font-size: 60px;">' + watts + '</p></body></html>');
+        wf.close()
+        
+        jf = open("watts.json", "w")
+        jf.write("["+watts+"]\n")
+        jf.close()
 
         tpred = tstamp
         tp = tt
