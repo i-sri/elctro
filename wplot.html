@@ -11,46 +11,58 @@
 <div style="text-align: center; width: 600px;">
    <div id="winst" style="font-size: 48px; font-family: Helvetica;">---</div>
 </div> 
-<p id="ttt">000</p>
+
 <script type="text/javascript">
 
 var gloc = 0;
-var tt = 101;
+var tt = 0;
 var w = 0;
 var datx=[];
-for (var i=0; i<100; i++) { datx.push([i, 30]); }
 
-var plot1 = $.jqplot('chartdiv',  [datx], 
-                    {seriesDefaults: {lineWidth: 1.0, shadow: false, showMarker: false},
-                     axes: { yaxis: {max: 100}, xaxis: {min: 0, max: 100},
-                     animateReplot : true}
-                     } );
+// for (var i=0; i<100; i++) { datx.push([i, 300]); }
+
+var plot1 = null;
+
                     
 setInterval(function(){
   $.getJSON( "http://raspberrypi/adc/watts.json",
     function( datap ) {
         tt++;
-        //var data = datap["watts"];
-        w = datap[0];
+
+        w = Math.round(datap[0]);
                 console.log("getJSON" +w);
-        datx.splice(0, 1);
-        datx.push([tt, w]);
 
-        document.getElementById("winst").innerHTML = w;
-        //document.getElementById("ttt").innerHTML = gloc + "..." + w + " datx " + datx;
+        if (tt == 1) {// first time 
+            for (tt=1; tt<=100; tt++) { datx.push([tt, w]); }
+            plot1 = $.jqplot('chartdiv',  [datx], 
+                    {seriesDefaults: {lineWidth: 2.0, shadow: false, showMarker: false},
+                     axes: { yaxis: {max: 100}, xaxis: {min: 0, max: 100},
+                     animateReplot : true}
+                     } );
+        } 
+        else {
+                
+          datx.splice(0, 1);
+          datx.push([tt, w]);
 
-        plot1.series[0].data = datx;
+          plot1.series[0].data = datx;
         //plot1.axes.xaxis.min = tt-100;     
         //plot1.axes.xaxis.max = tt;
-        plot1.resetAxesScale();       
+          plot1.resetAxesScale();       
 //        plot1.axes.xaxis.numberTicks = 10;
 //        plot1.axes.y2axis.numberTicks = 15;
-        plot1.replot();      
+          plot1.replot();
+        }
+        document.getElementById("winst").innerHTML = w;
+        
+        //document.getElementById("ttt").innerHTML = gloc + "..." + w + " datx " + datx;
+
+
   });
 
- var d = new Date();
- var n = d.getTime(); 
- gloc++;
+   var d = new Date();
+   var n = d.getTime(); 
+ 
  
  }, 2000);
 
