@@ -85,6 +85,8 @@ $ python setup.py install
 
 # Visualisation
 
+Le collecteur de données stocke dans le fichier watts.json la dernière mesure. La page wplot.html lit régulièrement cette valeur et affiche un graphique.
+
 
 
 
